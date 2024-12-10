@@ -1,0 +1,6 @@
+someone_is_home:
+  name: "Someone is at home"
+  entities:
+    - device_tracker.apple
+    - device_tracker.milos_iphone_2
+  all: false

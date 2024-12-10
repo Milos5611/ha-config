@@ -1,0 +1,198 @@
+- id: '1661277650934'
+  alias: Fingerprint door unlock
+  description: ''
+  triggers:
+  - entity_id:
+    - sensor.door_fingerprint_state
+    to: Authorized finger
+    trigger: state
+  conditions: []
+  actions:
+  - device_id: f2e3b2d4f107c73ce5930f6ee7f59dd8
+    domain: lock
+    entity_id: bf758f21fc20c3f2cbad6aa804fc10d8
+    type: unlock
+  - if:
+    - condition: time
+      after: '15:30:00'
+      before: 00:06:00
+    then:
+    - type: turn_on
+      device_id: aa4a2351d04b3e41e008a592b18ce6d0
+      entity_id: light.living_room
+      domain: light
+    - type: turn_on
+      device_id: e92a9d6ed7dd7c7c529c99c5dab77985
+      entity_id: light.panel
+      domain: light
+    - type: turn_on
+      device_id: 00678a79a11a96ba977e341d38062f8e
+      entity_id: 4a71593a8486950697bfb94b5f7c826f
+      domain: light
+  mode: single
+- id: '1661278745414'
+  alias: iPad charging ON
+  description: ''
+  trigger:
+  - type: battery_level
+    platform: device
+    device_id: af5dc06c450151ceff5bad73a7068d2d
+    entity_id: sensor.miloss_ipad_battery_level
+    domain: sensor
+    below: 25
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 5edb44ee781e7417c4464421fcde765c
+    entity_id: switch.ipad_charger
+    domain: switch
+  mode: single
+- id: '1661278764200'
+  alias: iPad charging OFF
+  description: ''
+  trigger:
+  - type: battery_level
+    platform: device
+    device_id: af5dc06c450151ceff5bad73a7068d2d
+    entity_id: sensor.miloss_ipad_battery_level
+    domain: sensor
+    above: 80
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 5edb44ee781e7417c4464421fcde765c
+    entity_id: switch.ipad_charger
+    domain: switch
+  mode: single
+- id: '1661279148783'
+  alias: Kitchen lights toggle (Wave)
+  description: ''
+  trigger:
+  - type: moving
+    platform: device
+    device_id: 0ff2b60136a780eaca7db57eeb24e19d
+    entity_id: binary_sensor.apds960_left_movement
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: toggle
+    device_id: c89813b7763c467b9594eb5acac3548e
+    entity_id: light.kitchen_strip
+    domain: light
+  mode: single
+- id: '1661443607438'
+  alias: Auto door lock
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: de471d8d7e38fadfd06a80cc930173b1
+    entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+    domain: binary_sensor
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - device_id: f2e3b2d4f107c73ce5930f6ee7f59dd8
+    domain: lock
+    entity_id: bf758f21fc20c3f2cbad6aa804fc10d8
+    type: lock
+  mode: single
+- id: '1661443836337'
+  alias: Fingerprint door lock
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.door_fingerprint_state
+    to: Unauthorized finger
+  condition: []
+  action:
+  - device_id: f2e3b2d4f107c73ce5930f6ee7f59dd8
+    domain: lock
+    entity_id: bf758f21fc20c3f2cbad6aa804fc10d8
+    type: lock
+  mode: single
+- id: '1687466458223'
+  alias: Bedroom AC Turn On
+  description: Turn on Bedroom AC if temperature is above 25 C
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: a07c558b99ecdd5c8a86fcbe4ae55f49
+    entity_id: sensor.bedroom_sensor_temperature
+    domain: sensor
+    above: 26
+  condition:
+  - condition: time
+    after: '17:00:00'
+    before: 03:00:00
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 24
+      hvac_mode: cool
+    target:
+      entity_id: climate.bedroom_ac
+  mode: single
+- id: '1687466586887'
+  alias: Bedroom AC Turn Off
+  description: Turn off Bedroom AC if temperature is below 24 C
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_window_contact
+    to: 'off'
+    from: 'on'
+  condition: []
+  action:
+  - device_id: 3984f540e7f6071e62301e20e0c5e8ff
+    domain: climate
+    entity_id: climate.bedroom_ac
+    type: set_hvac_mode
+    hvac_mode: 'off'
+  mode: single
+- id: '1699810867069'
+  alias: Zone Notification
+  description: ''
+  use_blueprint:
+    path: homeassistant/notify_leaving_zone.yaml
+    input:
+      person_entity: person.marina
+      zone_entity: zone.home
+      notify_device: dcff2f102976684d6216f7371401985b
+- id: '1730645219037'
+  alias: Airpufer off
+  description: ''
+  triggers:
+  - type: opened
+    device_id: e91b1d6fc1b525d5bd394cbf285f6b54
+    entity_id: 23855eca1f005f3a25dde65bba6f2bd5
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 5bd19c8434dbfc1bb80d5b3f63af4892
+    entity_id: 85fc8e5872dffbb6a0e094aa1c194dfc
+    domain: fan
+  mode: single
+- id: '1730645305136'
+  alias: Airpufer on
+  description: ''
+  triggers:
+  - type: not_opened
+    device_id: e91b1d6fc1b525d5bd394cbf285f6b54
+    entity_id: 23855eca1f005f3a25dde65bba6f2bd5
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 5bd19c8434dbfc1bb80d5b3f63af4892
+    entity_id: 85fc8e5872dffbb6a0e094aa1c194dfc
+    domain: fan
+  mode: single

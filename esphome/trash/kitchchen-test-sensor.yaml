@@ -1,0 +1,31 @@
+esphome:
+  name: kitchchen-test-sensor
+  friendly_name: kitchchen-test-sensor
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "YrDrxin8mlWUHykxrgVuQYMXdxUrBBpphrrtOCtnZ1o="
+
+ota:
+  password: "6952947332c6c58d249bd4d9b952cf01"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Kitchchen-Test-Sensor"
+    password: "FJf3y9l7Voj5"
+
+captive_portal:
+    

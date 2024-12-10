@@ -1,0 +1,70 @@
+{
+    "0x00158d00022cd3c3": {
+        "temperature": 24.77,
+        "humidity": 40.05,
+        "pressure": 1007.8,
+        "linkquality": 167,
+        "voltage": 3075,
+        "battery": 100,
+        "power_outage_count": 16
+    },
+    "0x00158d000224a98a": {
+        "contact": true,
+        "linkquality": 36,
+        "voltage": 3045,
+        "battery": 100,
+        "power_outage_count": 1467
+    },
+    "0x00158d0001b755f9": {
+        "contact": true,
+        "linkquality": 18,
+        "voltage": 2995,
+        "battery": 97,
+        "power_outage_count": 238
+    },
+    "0x00158d0002250406": {
+        "contact": true,
+        "linkquality": 7,
+        "voltage": 3255,
+        "battery": 100,
+        "power_outage_count": 4003
+    },
+    "0x00158d0001fa8d42": {
+        "contact": true,
+        "linkquality": 18,
+        "voltage": 2975,
+        "battery": 83,
+        "power_outage_count": 773
+    },
+    "0x00158d0001b75af1": {
+        "contact": true,
+        "linkquality": 40,
+        "voltage": 3005,
+        "battery": 100,
+        "power_outage_count": 3742
+    },
+    "0x00158d00023f4fd5": {
+        "temperature": 23.6,
+        "humidity": 44.15,
+        "pressure": 998.2,
+        "linkquality": 153,
+        "voltage": 2965,
+        "battery": 77,
+        "power_outage_count": 12304
+    },
+    "0x000d6ffffed18199": {
+        "state": "OFF",
+        "power_on_behavior": "previous",
+        "linkquality": 51,
+        "update": {
+            "state": "idle",
+            "installed_version": 587765297,
+            "latest_version": 587765297
+        }
+    },
+    "0x00158d008b33598d": {
+        "temperature": 24.78,
+        "humidity": 37.52,
+        "pressure": 999.8
+    }
+}

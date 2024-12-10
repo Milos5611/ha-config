@@ -1,0 +1,59 @@
+esphome:
+  name: living-room-ac
+  platform: ESP8266
+  board: nodemcuv2
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "f8eec32e41dfb95ea4cc31c10f183108"
+  platform: esphome
+
+wifi:
+  ssid: "echotek"
+  password: "porodicanikolic"
+  manual_ip:
+      # Set this to the IP of the ESP
+      static_ip: 192.168.176.194
+      # Set this to the IP address of the router. Often ends with .1
+      gateway: 192.168.176.1
+      # The subnet of the network. 255.255.255.0 works for most home networks.
+      subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Living-Room-Ac Fallback Hotspot"
+    password: "eAqYSViZvGIv"
+
+captive_portal:
+
+# Disable logging over UART (required)
+logger:
+  baud_rate: 0
+
+# UART settings for Midea dongle (required)
+uart:
+  tx_pin: 5
+  rx_pin: 4
+  baud_rate: 9600
+
+#midea_dongle:
+  #strength_icon: true
+
+climate:
+  - platform: midea
+    name: "AC"
+    visual:
+      min_temperature: 17 °C
+      max_temperature: 30 °C
+      temperature_step: 1 °C
+    beeper: false
+    custom_fan_modes:
+      - SILENT
+      - TURBO
+sensor:
+  - platform: adc
+    pin: A0
+    name: "Living Room AC Display"
+    update_interval: 30s

@@ -1,0 +1,185 @@
+esphome:
+  name: kitchen-proximity-sensor
+  platform: ESP32
+  board: nodemcu-32s
+
+ota:
+  platform: esphome
+  password: "f8eec32e41dfb95ea4cc31c10f183108"
+
+wifi:
+  ssid: "echotek"
+  password: "porodicanikolic"
+  manual_ip:
+      # Set this to the IP of the ESP
+      static_ip: 192.168.176.216
+      # Set this to the IP address of the router. Often ends with .1
+      gateway: 192.168.176.1
+      # The subnet of the network. 255.255.255.0 works for most home networks.
+      subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Kitchen Proximity Hotspot"
+    password: "jhjhjggfht"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+#add sensors  
+
+i2c:
+  sda: 16
+  scl: 18
+  scan: true
+  id: bus_a
+
+
+apds9960:
+  address: 0x39
+  update_interval: 60s
+
+binary_sensor:
+  - platform: apds9960
+    direction: UP
+    name: "APDS960 Up Movement"
+  - platform: apds9960
+    direction: DOWN
+    name: "APDS960 Down Movement"
+  - platform: apds9960
+    direction: LEFT
+    name: "APDS960 Left Movement"
+  - platform: apds9960
+    direction: RIGHT
+    name: "APDS960 Right Movement"
+uart:
+  tx_pin: 2
+  rx_pin: 5
+  baud_rate: 57600
+
+fingerprint_grow:
+  password: 0x365BCA22
+  sensing_pin: 4
+  on_finger_scan_matched:
+    - homeassistant.event:
+        event: esphome.test_node_finger_scan_matched
+        data:
+          finger_id: !lambda 'return finger_id;'
+          confidence: !lambda 'return confidence;'
+    - fingerprint_grow.aura_led_control:
+        state: BREATHING
+        speed: 200
+        color: BLUE
+        count: 1
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Authorized finger"
+    - delay: 3s
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Scan your finger"
+  on_finger_scan_unmatched:
+    - homeassistant.event:
+        event: esphome.test_node_finger_scan_unmatched
+    - fingerprint_grow.aura_led_control:
+        state: FLASHING
+        speed: 25
+        color: RED
+        count: 2
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Unauthorized finger"
+    - delay: 3s
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Scan your finger"
+  on_enrollment_scan:
+    - homeassistant.event:
+        event: esphome.test_node_enrollment_scan
+        data:
+          finger_id: !lambda 'return finger_id;'
+          scan_num: !lambda 'return scan_num;'
+    - fingerprint_grow.aura_led_control:
+        state: FLASHING
+        speed: 25
+        color: BLUE
+        count: 2
+    - fingerprint_grow.aura_led_control:
+        state: ALWAYS_ON
+        speed: 0
+        color: PURPLE
+        count: 0
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Finger scanned"
+  on_enrollment_done:
+    - homeassistant.event:
+        event: esphome.test_node_enrollment_done
+        data:
+          finger_id: !lambda 'return finger_id;'
+    - fingerprint_grow.aura_led_control:
+        state: BREATHING
+        speed: 100
+        color: BLUE
+        count: 2
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Enrolled fingerprint"
+  on_enrollment_failed:
+    - homeassistant.event:
+        event: esphome.test_node_enrollment_failed
+        data:
+          finger_id: !lambda 'return finger_id;'
+    - fingerprint_grow.aura_led_control:
+        state: FLASHING
+        speed: 25
+        color: RED
+        count: 4
+    - text_sensor.template.publish:
+        id: fingerprint_state
+        state: "Failed to enroll fingerprint"
+
+text_sensor:
+  - platform: template
+    id: fingerprint_state
+    name: "Door Fingerprint State"
+
+sensor:
+  - platform: fingerprint_grow
+    fingerprint_count:
+      name: "Door Fingerprint Count"
+    last_finger_id:
+      name: "Door Fingerprint Last Finger ID"
+    last_confidence:
+      name: "Door Fingerprint Last Confidence"
+    status:
+      name: "Door Fingerprint Status"
+    capacity:
+      name: "Door Fingerprint Capacity"
+    security_level:
+      name: "Door Fingerprint Security Level"
+
+api:
+  services:
+  - service: enroll
+    variables:
+      finger_id: int
+      num_scans: int
+    then:
+      - fingerprint_grow.enroll:
+          finger_id: !lambda 'return finger_id;'
+          num_scans: !lambda 'return num_scans;'
+  - service: cancel_enroll
+    then:
+      - fingerprint_grow.cancel_enroll:
+  - service: delete
+    variables:
+      finger_id: int
+    then:
+      - fingerprint_grow.delete:
+          finger_id: !lambda 'return finger_id;'
+  - service: delete_all
+    then:
+      - fingerprint_grow.delete_all:
