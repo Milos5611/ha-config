@@ -1,11 +1,14 @@
-homeassistant: true
+homeassistant:
+  enabled: true
 mqtt:
   server: mqtt://core-mosquitto:1883
   user: addons
   password: ku9gai0OP7maiV5oopiebohk5chieth0be0eethucae1ueyeivie7oocaa6yeeba
 serial:
   port: /dev/ttyUSB0
+  adapter: zstack
 frontend:
+  enabled: true
   port: 8099
 advanced:
   log_syslog:
@@ -17,29 +20,26 @@ advanced:
     pid: process.pid
     port: 123
     protocol: tcp4
-    type: '5424'
+    type: "5424"
   channel: 25
-  homeassistant_legacy_entity_attributes: false
-  legacy_api: false
-  legacy_availability_payload: false
-device_options:
-  legacy: false
+device_options: {}
 devices:
-  '0x00158d00022cd3c3':
+  "0x00158d00022cd3c3":
     friendly_name: Bedroom sensor
-  '0x00158d000224a98a':
+  "0x00158d000224a98a":
     friendly_name: Living room window
-  '0x00158d0001b755f9':
+  "0x00158d0001b755f9":
     friendly_name: Living room door
-  '0x00158d0002250406':
+  "0x00158d0002250406":
     friendly_name: Storage Door
-  '0x00158d0001fa8d42':
+  "0x00158d0001fa8d42":
     friendly_name: Office window
-  '0x00158d0001b75af1':
+  "0x00158d0001b75af1":
     friendly_name: Bedroom window
-  '0x00158d00023f4fd5':
+  "0x00158d00023f4fd5":
     friendly_name: Office sensor
-  '0x000d6ffffed18199':
+  "0x000d6ffffed18199":
     friendly_name: iPad charger
-  '0x00158d008b33598d':
+  "0x00158d008b33598d":
     friendly_name: Living room sensor
+version: 4

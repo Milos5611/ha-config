@@ -44,10 +44,10 @@
         "power_outage_count": 3742
     },
     "0x00158d00023f4fd5": {
-        "temperature": 23.6,
-        "humidity": 44.15,
-        "pressure": 998.2,
-        "linkquality": 153,
+        "temperature": 23.22,
+        "humidity": 29.8,
+        "pressure": 1006.8,
+        "linkquality": 112,
         "voltage": 2965,
         "battery": 77,
         "power_outage_count": 12304
@@ -55,7 +55,7 @@
     "0x000d6ffffed18199": {
         "state": "OFF",
         "power_on_behavior": "previous",
-        "linkquality": 51,
+        "linkquality": 25,
         "update": {
             "state": "idle",
             "installed_version": 587765297,
@@ -63,8 +63,12 @@
         }
     },
     "0x00158d008b33598d": {
-        "temperature": 24.78,
-        "humidity": 37.52,
-        "pressure": 999.8
+        "temperature": 23.17,
+        "humidity": 28.09,
+        "pressure": 1008.5,
+        "linkquality": 58,
+        "voltage": 2965,
+        "battery": 77,
+        "power_outage_count": 9
     }
 }
