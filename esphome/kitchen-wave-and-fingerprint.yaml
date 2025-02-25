@@ -1,7 +1,7 @@
 esphome:
   name: kitchen-proximity-sensor
 esp32:
-  board: nodemcu-32s
+  board: esp32dev
 
 ota:
   platform: esphome
