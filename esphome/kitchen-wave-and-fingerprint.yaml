@@ -1,8 +1,8 @@
 esphome:
   name: kitchen-proximity-sensor
 esp32:
-  board: esp32dev
-
+  board: nodemcu-32s
+  
 ota:
   platform: esphome
   password: "f8eec32e41dfb95ea4cc31c10f183108"
@@ -10,6 +10,7 @@ ota:
 wifi:
   ssid: "echotek"
   password: "porodicanikolic"
+  use_address: 192.168.176.216
   manual_ip:
       # Set this to the IP of the ESP
       static_ip: 192.168.176.216
