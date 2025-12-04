@@ -33,36 +33,36 @@
 - id: '1661278745414'
   alias: iPad charging ON
   description: ''
-  trigger:
+  triggers:
   - type: battery_level
-    platform: device
     device_id: af5dc06c450151ceff5bad73a7068d2d
     entity_id: sensor.miloss_ipad_battery_level
     domain: sensor
-    below: 25
-  condition: []
-  action:
+    below: 23
+    trigger: device
+  conditions: []
+  actions:
   - type: turn_on
-    device_id: 5edb44ee781e7417c4464421fcde765c
-    entity_id: switch.ipad_charger
-    domain: switch
+    device_id: 490e0657ca9a100eedd4acef3ced76b5
+    entity_id: c71da8975f4e8c7e7b251c96debe1e08
+    domain: light
   mode: single
 - id: '1661278764200'
   alias: iPad charging OFF
   description: ''
-  trigger:
+  triggers:
   - type: battery_level
-    platform: device
     device_id: af5dc06c450151ceff5bad73a7068d2d
     entity_id: sensor.miloss_ipad_battery_level
     domain: sensor
     above: 80
-  condition: []
-  action:
+    trigger: device
+  conditions: []
+  actions:
   - type: turn_off
-    device_id: 5edb44ee781e7417c4464421fcde765c
-    entity_id: switch.ipad_charger
-    domain: switch
+    device_id: 490e0657ca9a100eedd4acef3ced76b5
+    entity_id: c71da8975f4e8c7e7b251c96debe1e08
+    domain: light
   mode: single
 - id: '1661279148783'
   alias: Kitchen lights toggle (Wave)

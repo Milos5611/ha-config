@@ -1,5 +1,5 @@
 esphome:
-  name: bedroom_ac
+  name: bedroom-ac
   
 esp8266:
   board: nodemcuv2
