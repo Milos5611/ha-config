@@ -1,0 +1,32 @@
+esphome:
+  name: gorenje
+  friendly_name: Gorenje
+
+esp32:
+  board: esp32-c6-devkitc-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "1UmbX32JAxO5THvGx27O1srpM+IopQ51FbZmuqPd5sw="
+
+ota:
+  - platform: esphome
+    password: "571e1abb32202e7b683239178b297931"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Gorenje Fallback Hotspot"
+    password: "kBz46WNAz9AC"
+
+captive_portal:
+    

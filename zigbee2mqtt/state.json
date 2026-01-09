@@ -23,7 +23,7 @@
         "power_outage_count": 2425
     },
     "0x00158d0002250406": {
-        "contact": false,
+        "contact": true,
         "linkquality": 109,
         "voltage": 3155,
         "battery": 100,
@@ -37,18 +37,18 @@
         "power_outage_count": 7076
     },
     "0x00158d00023f4fd5": {
-        "temperature": 23.63,
-        "humidity": 37.14,
-        "pressure": 980.1,
+        "temperature": 23.34,
+        "humidity": 37.36,
+        "pressure": 978.7,
         "linkquality": 131,
-        "voltage": 2935,
-        "battery": 57,
+        "voltage": 2945,
+        "battery": 63,
         "power_outage_count": 12304
     },
     "0x00158d008b33598d": {
-        "temperature": 22.54,
-        "humidity": 36.01,
-        "pressure": 981.6,
+        "temperature": 22.81,
+        "humidity": 36.48,
+        "pressure": 980.2,
         "linkquality": 80,
         "voltage": 2955,
         "battery": 70,
