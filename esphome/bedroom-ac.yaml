@@ -11,8 +11,8 @@ ota:
   password: "f8eec32e41dfb95ea4cc31c10f183108"
 
 wifi:
-  ssid: "echotek"
-  password: "porodicanikolic"
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
   manual_ip:
       # Set this to the IP of the ESP
       static_ip: 192.168.176.193
