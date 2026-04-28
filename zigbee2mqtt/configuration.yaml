@@ -41,4 +41,4 @@ devices:
     friendly_name: Living room sensor
   '0x00158d0001fa8d42':
     friendly_name: Office window
-version: 4
+version: 5

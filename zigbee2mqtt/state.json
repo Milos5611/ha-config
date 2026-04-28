@@ -10,54 +10,54 @@
     },
     "0x00158d000224a98a": {
         "contact": true,
-        "linkquality": 58,
-        "voltage": 3175,
+        "linkquality": 83,
+        "voltage": 3025,
         "battery": 100,
         "power_outage_count": 1469
     },
     "0x00158d0001b755f9": {
         "contact": true,
-        "linkquality": 43,
-        "voltage": 3115,
+        "linkquality": 40,
+        "voltage": 3015,
         "battery": 100,
-        "power_outage_count": 2425
+        "power_outage_count": 2431
     },
     "0x00158d0002250406": {
-        "contact": true,
-        "linkquality": 109,
-        "voltage": 3155,
+        "contact": false,
+        "linkquality": 65,
+        "voltage": 3075,
         "battery": 100,
         "power_outage_count": 7556
     },
     "0x00158d0001b75af1": {
         "contact": true,
-        "linkquality": 98,
+        "linkquality": 120,
         "voltage": 3015,
         "battery": 100,
         "power_outage_count": 7076
     },
     "0x00158d00023f4fd5": {
-        "temperature": 23.34,
-        "humidity": 37.36,
-        "pressure": 978.7,
-        "linkquality": 131,
-        "voltage": 2945,
-        "battery": 63,
-        "power_outage_count": 12304
+        "temperature": 23.51,
+        "humidity": 38.38,
+        "pressure": 993.8,
+        "linkquality": 127,
+        "voltage": 2855,
+        "battery": 3,
+        "power_outage_count": 12340
     },
     "0x00158d008b33598d": {
-        "temperature": 22.81,
-        "humidity": 36.48,
-        "pressure": 980.2,
-        "linkquality": 80,
-        "voltage": 2955,
-        "battery": 70,
+        "temperature": 22.89,
+        "humidity": 38.13,
+        "pressure": 995.6,
+        "linkquality": 83,
+        "voltage": 2845,
+        "battery": 0,
         "power_outage_count": 9
     },
     "0x00158d0001fa8d42": {
         "contact": true,
-        "linkquality": 116,
-        "voltage": 3065,
+        "linkquality": 127,
+        "voltage": 3025,
         "battery": 100,
         "power_outage_count": 1796
     }
